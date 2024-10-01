@@ -50,3 +50,9 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+build/
+
+.vscode
+.idea
+.compile_commands.json
