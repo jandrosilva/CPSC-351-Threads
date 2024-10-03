@@ -1,3 +1,14 @@
+/*
+ * CSPSC 351 Group Project 2
+ * Date began: 9/30/24
+ * Due date: 10/9/24
+ * Authors: Joshua Holman, Cameron Rosenthal, Noah Scott, Alejandro Silva
+ * 
+ * This program: Threads
+ *     Sorts an array using merge sort and threads
+ *
+ * This file:  main.c
+ */
 #include <stdlib.h> /*qsort*/
 #include <stdio.h> /*printf*/
 #include <pthread.h> /*POSIX threads*/
@@ -58,7 +69,7 @@ int main(void) {
   int* result = merge_arrays(first_half, first_size, second_half, second_size);
 
   // this should really use merge sort
-  sort(result, SIZE);
+  merge_sort(result, 0, SIZE - 1);
   disp_array(result, SIZE);
 
   return 0;
@@ -67,7 +78,7 @@ int main(void) {
 void* thread_sort(void* arg) {
   pthread_detach(pthread_self());
   Array* arr_struct = (Array*)arg;
-  sort(arr_struct->arr, arr_struct->size);
+  merge_sort(arr_struct->arr, 0, arr_struct->size - 1);
   pthread_exit(NULL);
 }
 
