@@ -2,55 +2,19 @@
 #include <stdio.h> /*printf*/
 #include <pthread.h> /*POSIX threads*/
 #include <unistd.h> /*sleep()*/
-#include <stdint.h>
 #include <string.h>
 
 #include "sort.h"
 
+/*
+ * Takes Array struct as arg and sorts array in place
+ */
+void* thread_sort(void* arg);
 
 typedef struct {
-
   int* arr;
   int size;
-
 } Array;
-
-void* func(void* arg) {
-  pthread_detach(pthread_self());
-
-  int seconds = (int)(intptr_t)arg;
-  printf("Thread will wait for %d seconds.\n", seconds);
-  sleep(seconds);
-  puts("Thread ending");
-
-  pthread_exit(NULL);
-}
-
-void* thread_sort(void* arg) {
-  pthread_detach(pthread_self());
-
-  Array* arr_struct = (Array*)arg;
-
-  sort(arr_struct->arr, arr_struct->size);
-
-  pthread_exit(NULL);
-}
-
-void disp_array(int* array, int size) {
-  for (int i = 0; i < size; ++i) {
-    printf("%d ", array[i]);
-  }
-  putchar('\n');
-}
-
-int* merge_arrays(int* arr1, int size1, int* arr2, int size2) {
-  int *result = (int*)malloc(sizeof(int) * size1 * size2);
-
-  memcpy(result, arr1, size1 * sizeof(int));
-  memcpy(result + size1, arr2, size2 * sizeof(int));
-
-  return result;
-}
 
 #define SIZE 11
 
@@ -101,9 +65,18 @@ int main(void) {
   sort(result, SIZE);
 
   disp_array(result, SIZE);
-
   pthread_exit(NULL);
-
 
   return 0;
 }
+
+void* thread_sort(void* arg) {
+  pthread_detach(pthread_self());
+
+  Array* arr_struct = (Array*)arg;
+
+  sort(arr_struct->arr, arr_struct->size);
+
+  pthread_exit(NULL);
+}
+

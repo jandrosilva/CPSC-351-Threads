@@ -9,7 +9,6 @@ int compare(const void* a, const void* b) {
 }
 
 void sort(int* arr, int size) {
-
   qsort(arr, size, sizeof(int), compare);
 }
 
@@ -26,3 +25,19 @@ void split_array(int* arr, int size, int** first_half, int *first_size, int** se
   memcpy(*second_half, arr + *first_size, *second_size * sizeof(int));
 }
 
+
+void disp_array(int* array, int size) {
+  for (int i = 0; i < size; ++i) {
+    printf("%d ", array[i]);
+  }
+  putchar('\n');
+}
+
+int* merge_arrays(int* arr1, int size1, int* arr2, int size2) {
+  int *result = (int*)malloc(sizeof(int) * size1 * size2);
+
+  memcpy(result, arr1, size1 * sizeof(int));
+  memcpy(result + size1, arr2, size2 * sizeof(int));
+
+  return result;
+}
