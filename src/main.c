@@ -68,7 +68,6 @@ int main(void) {
 
   int* result = merge_arrays(first_half, first_size, second_half, second_size);
 
-  // this should really use merge sort
   merge_sort(result, 0, SIZE - 1);
   disp_array(result, SIZE);
 
