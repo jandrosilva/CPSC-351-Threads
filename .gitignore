@@ -56,4 +56,4 @@ build/
 
 .vscode
 .idea
-.compile_commands.json
+compile_commands.json
