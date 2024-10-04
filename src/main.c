@@ -60,15 +60,18 @@ int main(void) {
   pthread_join(ptid1, NULL);
   pthread_join(ptid2, NULL);
 
-  printf("Sorted left: ");
+  printf("\nSorted left: ");
   disp_array(first_half, first_size);
   printf("Sorted right: ");
   disp_array(second_half, second_size);
   putchar('\n');
 
-  int* result = merge_arrays(first_half, first_size, second_half, second_size);
+  int* result = combine_arrays(first_half, first_size, second_half, second_size);
+  printf("After combining:    ");
+  disp_array(result, SIZE);
 
-  merge_sort(result, 0, SIZE - 1);
+  merge(result, 0, first_size, SIZE);
+  printf("Final sorted array: ");
   disp_array(result, SIZE);
 
   return 0;

@@ -38,7 +38,7 @@ void merge(int* arr, int left, int mid, int right) {
     k++;
   }
 
-  while (i < n2) {
+  while (j < n2) {
     arr[k] = rightArr[j];
     j++;
     k++;
@@ -78,7 +78,7 @@ void disp_array(int* array, int size) {
   putchar('\n');
 }
 
-int* merge_arrays(int* arr1, int size1, int* arr2, int size2) {
+int* combine_arrays(int* arr1, int size1, int* arr2, int size2) {
   int *result = (int*)malloc(sizeof(int) * size1 * size2);
 
   memcpy(result, arr1, size1 * sizeof(int));

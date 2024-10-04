@@ -8,6 +8,6 @@ void split_array(int*, int, int**, int*, int**, int*);
 
 void disp_array(int*, int);
 
-int* merge_arrays(int*, int, int*, int);
+int* combine_arrays(int*, int, int*, int);
 
 #endif
