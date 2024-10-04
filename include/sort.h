@@ -1,5 +1,5 @@
-#ifndef TEST_H
-#define TEST_H
+#ifndef SORT_H
+#define SORT_H
 
 void merge(int* arr, int left, int mid, int right);
 void merge_sort(int*, int, int);
