@@ -40,6 +40,8 @@ int main(void) {
   printf("Original array: ");
   disp_array(array, SIZE);
 
+  // split array in half and send each to half to a thread to be merge sorted
+
   split_array(array, SIZE, &first_half, &first_size, &second_half, &second_size);
 
   printf("Left array: ");
@@ -60,6 +62,8 @@ int main(void) {
   pthread_join(ptid1, NULL);
   pthread_join(ptid2, NULL);
 
+  // threads are done, time to output and merge the two sorted halves
+
   printf("\nSorted left: ");
   disp_array(first_half, first_size);
   printf("Sorted right: ");
@@ -67,13 +71,19 @@ int main(void) {
   putchar('\n');
 
   int* result = combine_arrays(first_half, first_size, second_half, second_size);
-  printf("After combining:    ");
+
+  free(first_half);
+  free(second_half);
+
+  printf("After combining: ");
   disp_array(result, SIZE);
 
-  merge(result, 0, first_size, SIZE);
-  printf("Final sorted array: ");
+  merge(result, 0, first_size - 1, SIZE - 1);
+
+  printf("After merging two sorted halves: ");
   disp_array(result, SIZE);
 
+  free(result);
   return 0;
 }
 
